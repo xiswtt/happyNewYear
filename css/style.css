@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap');
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    background: url(../img/background.png);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Rubik Gemstones',serif;
+}
+
+.main-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 2s ease-in-out;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Елка - абсолютное центрирование */
+.big-tree {
+    position: absolute;
+    bottom: -100%;
+    left: 28%;
+    width: 755px;
+    height: 888px;
+    background: url(../img/big_tree.png) no-repeat center bottom;
+    background-size: contain;
+    transition: bottom 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    pointer-events: none;
+    z-index: 11;
+}
+
+.big-tree.show {
+    bottom: 0px;
+    pointer-events: auto;
+}
+
+/* Контейнер гирлянды - такой же размер как елка */
+.garland-container {
+    position: absolute;
+    bottom: -100%;
+    left: 33%;
+    width: 612px;
+    height: 624px;
+    z-index: 21;
+    pointer-events: none;
+    transition: bottom 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);;
+}
+
+.garland-container.show {
+    bottom: 0px;
+}
+
+/* Гирлянда не светится */
+.light1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../img/lights.png) no-repeat center bottom;
+    background-size: contain;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Гирлянда светящаяся */
+.light2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../img/lights1.png) no-repeat center bottom;
+    background-size: contain;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Дед Мороз - увеличиваем z-index */
+.dedulya {
+    position: absolute;
+    height: 274px;
+    width: 450px;
+    background: url(../img/ded.png) no-repeat;
+    background-size: contain;
+    z-index: 4;
+    top: 10%;
+    left: 0;
+    transition: none !important;
+    transform: translateX(-800px);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+}
+
+/* Звезда - будет позиционироваться динамически */
+.star {
+    position: absolute;
+    width: 159px;
+    height: 155px;
+    background: url(../img/big-star.png) no-repeat center;
+    background-size: contain;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.star.show {
+    opacity: 1;
+    animation: starShine 2s infinite alternate;
+}
+
+@keyframes starShine {
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) drop-shadow(0 0 5px gold);
+    }
+    50% {
+        transform: scale(1.1) rotate(5deg);
+        filter: brightness(1.3) drop-shadow(0 0 20px gold);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) drop-shadow(0 0 10px gold);
+    }
+}
+
+/* Надпись */
+.new-year-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: scale(0);
+    font-size: 100px;
+    color: #EEA727;
+    text-shadow: 
+        0 0 10px #4D2B8C,
+        0 0 20px #4D2B8C,
+        0 0 30px #85409D,
+        0 0 40px #85409D,
+        0 0 70px #FFEF5F,
+        0 0 80px #FFEF5F,
+        0 0 100px #FFEF5F;
+    text-align: center;
+    z-index: 100;
+    opacity: 0;
+    transition: all 1.5s ease-out;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.new-year-text.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.clouds {
+    position: absolute;
+    content: '';
+    height: 110%;
+    width: 110%;
+    transform-origin: center;
+    top: -5%;
+    left: -5%;
+    background-size: cover;
+    background: url(../img/clouds.png);
+    z-index: 1;
+}
+
+.stars {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(../img/stars.png);
+    z-index: 3;
+}
+
+.moon {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(../img/chese.png);
+    z-index: 2;
+}
+
+.ground {
+    position: absolute;
+    height: 110%;
+    width: 110%;
+    bottom: -5%;
+    left: -5%;
+    background: url(../img/ground.png) no-repeat center bottom;
+    background-size: contain;
+    z-index: 2;
+}
+
+.trees {
+    position: absolute;
+    content: '';
+    height: 110%;
+    width: 110%;
+    bottom: -5%;
+    left: -5%;
+    background: url(../img/trees_small.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 5;
+}
+
+.clouds, .stars, .moon, .ground, .trees {
+    transform: scale(1.1); /* Увеличиваем на 10% */
+    transform-origin: center;
+}
+
+.ground, .trees {
+    transform-origin: center bottom;
+}
